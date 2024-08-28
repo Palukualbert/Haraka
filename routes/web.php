@@ -34,3 +34,5 @@ Route::get('/paiement', function () {
     return view('layouts.paiement');
 });
 
+Route::get('/login',[\App\Http\Controllers\AuthChauffeurController::class, 'login'])->name('chauffeur.login');
+
