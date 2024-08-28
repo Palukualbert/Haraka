@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'chauffeur', // Par défaut, utiliser le guard chauffeur
+        'passwords' => 'chauffeurs',
     ],
 
     /*
@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'chauffeur' => [
+            'driver' => 'session',
+            'provider' => 'chauffeurs',
+        ],
     ],
 
     /*
@@ -60,9 +64,9 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'chauffeurs' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Chauffeur::class,
         ],
 
         // 'users' => [

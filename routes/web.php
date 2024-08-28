@@ -36,3 +36,4 @@ Route::get('/paiement', function () {
 
 Route::get('/login',[\App\Http\Controllers\AuthChauffeurController::class, 'login'])->name('chauffeur.login');
 
+Route::post('/login',[\App\Http\Controllers\AuthChauffeurController::class, 'auth']);

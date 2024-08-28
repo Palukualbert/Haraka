@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('chauffeurs', function (Blueprint $table) {
             $table->id();
             $table->string('telephone');
+            $table->string('nom');
+            $table->longText('adresse');
+            $table->string('mot_de_passe');
             $table->boolean('disponible');
             $table->timestamps();
         });
