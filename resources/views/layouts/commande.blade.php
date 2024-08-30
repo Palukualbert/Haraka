@@ -204,7 +204,7 @@
 <body>
 @include('partials.header')
 
-<section style="margin: 40px auto; width: 90%">
+<section style="margin: 80px auto 40px auto; width: 90%;">
     <div id="controls" class="container mt-4">
         <div class="form-group">
             <label for="start" class="form-label">Point de départ :</label>

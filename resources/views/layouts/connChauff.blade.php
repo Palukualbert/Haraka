@@ -31,6 +31,9 @@
     <div class="row justify-content-center">
         <div class="col-md-6"> <!-- Réduction de la largeur -->
             <div class="card">
+                <div style="text-align: center;">
+                    <a href="/"><img src="img/haraka.png" style="height: 90px; width: 110px; max-width: 100%;" alt="" title="" /></a>
+                </div>
                 <div class="card-header" style="text-align: center">Connexion</div>
 
                 <div class="card-body">
