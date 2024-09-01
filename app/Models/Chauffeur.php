@@ -7,8 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 class Chauffeur extends Authenticatable
 {
-    protected $fillable = ['telephone', 'disponible'];
+    protected $fillable = ['nom','adresse','password','telephone', 'disponible'];
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+    public function getAuthIdentifierName()
+    {
+        return 'telephone'; // Retourner le nom de la colonne utilisée pour l'authentification
+    }
     public function vehicules()
     {
         return $this->hasMany(Vehicule::class);

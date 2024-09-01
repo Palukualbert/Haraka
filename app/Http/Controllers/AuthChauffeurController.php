@@ -14,11 +14,15 @@ class AuthChauffeurController extends Controller
 
     public function auth(ConnChauffRequest $request){
 
-        if (Auth::guard('chauffeur')->attempt(['telephone' => $request->telephone, 'mot_de_passe' => $request->mot_de_passe])) {
-            dd('Authentification reussi !');
-            return redirect()->intended('/chauffeur/dashboard');
+        $credentials = [
+            'telephone' => $request->telephone,
+            'password' => $request->mot_de_passe  // Mapper "mot_de_passe" à "password"
+        ];
+
+        if (Auth::guard('chauffeur')->attempt($credentials)) {
+            return redirect()->intended('/liste');
         }else{
-            dd('Authentification echoueé !');
+
         }
 
 

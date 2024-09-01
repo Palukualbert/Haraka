@@ -42,9 +42,7 @@
                         <div class="form-group">
                             <label for="telephone" class="form-label">Phone :</label>
                             <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">+243</span>
-                                </div>
+
                                 <input id="telephone" type="tel" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}" autocomplete="telephone" autofocus>
                             </div>
 

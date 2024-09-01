@@ -214,6 +214,14 @@
             <label for="end" class="form-label">Destination :</label>
             <input type="text" id="end" class="form-control" placeholder="Nom de l'avenue">
         </div>
+        <div class="form-group">
+            <label for="category">Catégorie</label>
+            <select class="form-control" id="category" name="nomCategorie">
+                <option value="">Choisissez une categorie</option>
+                <option value="1">VIP</option>
+                <option value="2">ORDINAIRE</option>
+            </select>
+        </div>
         <div style="display: flex; width: 100%; margin-top: 10px; gap: 20px;">
             <button id="routeButton" class="btn" style="flex: 1; max-width: 45%; background-color: black; color: white"> Itinéraire</button>
             <button id="orderButton" class="btn btn-outline-info" style="flex: 1; max-width: 45%; background-color: #FFFF00; color: black">Commander</button>

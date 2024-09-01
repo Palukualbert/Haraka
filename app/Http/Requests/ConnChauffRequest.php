@@ -22,7 +22,7 @@ class ConnChauffRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'telephone' => ['required', 'regex:/^[0-9]{9}$/'],
+            'telephone' => ['required', 'regex:/^[0-9]{10}$/'],
             'mot_de_passe' => ['required', 'min:4', 'max:8']
         ];
     }

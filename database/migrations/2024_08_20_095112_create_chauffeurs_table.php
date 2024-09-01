@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('telephone');
             $table->string('nom');
             $table->longText('adresse');
-            $table->string('mot_de_passe');
+            $table->string('password');
             $table->boolean('disponible');
             $table->timestamps();
         });

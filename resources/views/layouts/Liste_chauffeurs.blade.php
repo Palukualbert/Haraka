@@ -150,7 +150,9 @@
                     <tr>
                         <td data-label="N°">{{ $i }}</td>
                         <td data-label="Numéro de téléphone">{{$chauffeur->telephone}} </td>
+
                         @foreach($chauffeur->vehicules as $vehicule)
+
                             <td data-label="Marque du véhicule">{{$vehicule->marque}}</td>
                             <td data-label="Immatriculation">{{$vehicule->plaqueImmat}}</td>
                             <td data-label="Couleur">{{$vehicule->couleurVehicule}}</td>

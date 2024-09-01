@@ -31,6 +31,16 @@
                         @endif
 
                         <div class="form-group">
+                            <label for="phoneNumber">Nom du chauffeur</label>
+                            <input type="text" class="form-control" id="phoneNumber" name="nom" placeholder="Entrez le nom du chaffeur" value="{{ old('nom', $chauffeur->nom ?? '') }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phoneNumber">Adresse du chauffeur</label>
+                            <input type="text" class="form-control" id="phoneNumber" name="adresse" placeholder="Entrez l'adresse du chauffeur" value="{{ old('adresse', $chauffeur->adresse ?? '') }}">
+                        </div>
+
+                        <div class="form-group">
                             <label for="phoneNumber">Numéro de téléphone</label>
                             <input type="text" class="form-control" id="phoneNumber" name="telephone" placeholder="Entrez le numéro de téléphone" value="{{ old('telephone', $chauffeur->telephone ?? '') }}">
                         </div>
@@ -52,7 +62,7 @@
 
                         <div class="form-group">
                             <label for="category">Catégorie</label>
-                            <select class="form-control" id="category" name="nomCategorie">
+                            <select class="form-control" id="category" name="categorie_id">
                                 <option value="">Choisissez une categorie</option>
                                 <option value="1">VIP</option>
                                 <option value="2">ORDINAIRE</option>

@@ -6,6 +6,8 @@ use App\Models\Categorie;
 use App\Models\Chauffeur;
 use App\Models\Vehicule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class ChauffeurController extends Controller
 {
@@ -38,7 +40,7 @@ class ChauffeurController extends Controller
             'marque' => 'required|string|max:50',
             'plaqueImmat' => 'required|string|max:20',
             'couleurVehicule' => 'required|string|max:20',
-            'nomCategorie' => 'required|string|max:50',
+            'categorie_id' => 'required|string|max:50',
         ]);
 
         // Mettre à jour les informations du chauffeur
@@ -52,7 +54,7 @@ class ChauffeurController extends Controller
             'marque' => $validatedData['marque'],
             'plaqueImmat' => $validatedData['plaqueImmat'],
             'couleurVehicule' => $validatedData['couleurVehicule'],
-            'categorie_id' => Categorie::firstOrCreate(['nomCategorie' => $validatedData['nomCategorie']])->id,
+            'categorie_id' => $validatedData['categorie_id'],
         ]);
 
         return to_route('chauffeur.liste')->with('success', 'Chauffeur modifié avec succès');
@@ -65,20 +67,27 @@ class ChauffeurController extends Controller
         return to_route('chauffeur.liste')->with('success', 'Chauffeur supprimé avec succès');
     }
     public function enregistrer_chauffeur(Request $request){
+        $motDePasse = $this->genererMotDePasse();
 
         $chauffeur = Chauffeur::create([
+            'nom' => $request->nom,
+            'adresse' => $request->adresse,
             'telephone' => $request->telephone,
-            'disponible'=> 0 //par defaut
+            'disponible'=> 0,
+            'password' => Hash::make($motDePasse)
         ]);
         Vehicule::create([
             'marque' => $request->marque,
             'plaqueImmat' => $request->plaqueImmat,
             'couleurVehicule' => $request->couleurVehicule,
             'chauffeur_id' => $chauffeur->id,
-            'categorie_id' => $request->nomCategorie
+            'categorie_id' => $request->categorie_id
         ]);
-
         return to_route('chauffeur.liste');
 
+    }
+    function genererMotDePasse()
+    {
+        return Str::random(6);
     }
 }
