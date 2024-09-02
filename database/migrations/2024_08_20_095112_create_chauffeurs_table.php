@@ -18,6 +18,7 @@ return new class extends Migration
             $table->longText('adresse');
             $table->string('password');
             $table->boolean('disponible');
+            $table->string('mot_de_passe');
             $table->timestamps();
         });
     }

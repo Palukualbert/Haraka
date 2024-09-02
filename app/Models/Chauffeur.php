@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 class Chauffeur extends Authenticatable
 {
-    protected $fillable = ['nom','adresse','password','telephone', 'disponible'];
+    protected $fillable = ['nom','adresse','password','mot_de_passe','telephone', 'disponible'];
 
     protected $hidden = [
         'password',

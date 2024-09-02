@@ -33,7 +33,15 @@ Route::get('/liste', [\App\Http\Controllers\ChauffeurController::class,'liste'])
 Route::get('/paiement', function () {
     return view('layouts.paiement');
 });
+Route::get('/about', function () {
+    return view('layouts.about');
+});
 
 Route::get('/login',[\App\Http\Controllers\AuthChauffeurController::class, 'login'])->name('chauffeur.login');
 
 Route::post('/login',[\App\Http\Controllers\AuthChauffeurController::class, 'auth']);
+
+Route::get('/accepter',[\App\Http\Controllers\ChauffeurController::class, 'accepter'])->name('chauffeur.accepter');
+
+
+

@@ -74,7 +74,8 @@ class ChauffeurController extends Controller
             'adresse' => $request->adresse,
             'telephone' => $request->telephone,
             'disponible'=> 0,
-            'password' => Hash::make($motDePasse)
+            'password' => Hash::make($motDePasse),
+            'mot_de_passe'=>$motDePasse
         ]);
         Vehicule::create([
             'marque' => $request->marque,
@@ -89,5 +90,8 @@ class ChauffeurController extends Controller
     function genererMotDePasse()
     {
         return Str::random(6);
+    }
+    function accepter(){
+        return view('layouts.Acceptation');
     }
 }

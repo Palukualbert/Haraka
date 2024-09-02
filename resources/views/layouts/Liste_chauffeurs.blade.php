@@ -4,7 +4,7 @@
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon-->
-    <!--<link rel="shortcut icon" href="img/fav.png">-->
+    <!--<link rel="shortcut icon" href="img/haraka.png">-->
     <!-- Author Meta -->
     <meta name="author" content="colorlib">
     <!-- Meta Description -->
@@ -14,7 +14,7 @@
     <!-- meta character set -->
     <meta charset="UTF-8">
     <!-- Site Title -->
-    <title>Taxi</title>
+    <title>Haraka</title>
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/linearicons.css')}}">
@@ -103,6 +103,26 @@
                 margin-bottom: 10px;
             }
         }
+
+         .footer-area {
+             padding: 10px 0; /* Réduit la hauteur du footer */
+             background-color: #000000; /* Couleur de fond, ajustez si nécessaire */
+             margin-top: 30%;
+
+         }
+
+        .footer-text {
+            margin: 0; /* Supprime les marges autour du texte */
+            font-size: 14px; /* Ajustez la taille de la police si nécessaire */
+            color: white; /* Couleur du texte */
+        }
+
+        .footer-area .container {
+            display: flex;
+            justify-content: center; /* Centre le contenu horizontalement */
+            align-items: center; /* Centre le contenu verticalement */
+            height: 5%; /* Assure que le footer occupe toute la hauteur disponible dans son conteneur */
+        }
     </style>
 </head>
 
@@ -135,7 +155,8 @@
                 <thead class="table-dark" style="color: yellow">
                 <tr>
                     <th scope="col">N°</th>
-                    <th scope="col">Numéro de téléphone</th>
+                    <th scope="col">Téléphone</th>
+                    <th scope="col">Mot de passe</th>
                     <th scope="col">Marque du véhicule</th>
                     <th scope="col">Immatriculation</th>
                     <th scope="col">Couleur</th>
@@ -150,6 +171,8 @@
                     <tr>
                         <td data-label="N°">{{ $i }}</td>
                         <td data-label="Numéro de téléphone">{{$chauffeur->telephone}} </td>
+
+                        <td data-label="Numéro de téléphone">{{$chauffeur->mot_de_passe}} </td>
 
                         @foreach($chauffeur->vehicules as $vehicule)
 
@@ -186,7 +209,14 @@
 
 </section>
 
-@include ('partials.footer')
+<footer class="footer-area">
+    <div class="container text-center">
+        <p class="footer-text">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tous Droits reservés | <i class="fa fa-html5" aria-hidden="true"></i> by <span> haraka</span>
+        </p>
+    </div>
+</footer>
 
 <script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
