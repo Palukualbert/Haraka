@@ -43,5 +43,9 @@ Route::post('/login',[\App\Http\Controllers\AuthChauffeurController::class, 'aut
 
 Route::get('/accepter',[\App\Http\Controllers\ChauffeurController::class, 'accepter'])->name('chauffeur.accepter');
 
+Route::post('/order/submit', [\App\Http\Controllers\CommandeController::class, 'submit'])->name('order.submit');
 
+Route::get('/order/success', function () {
+    return view('order.success');
+})->name('order.success');
 
