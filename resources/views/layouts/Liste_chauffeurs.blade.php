@@ -132,11 +132,10 @@
     <div class="header-top"></div>
     <div class="container main-menu">
         <div class="row align-items-center justify-content-between d-flex">
-            <!--<a href="index.html"><img src="img/logo.png" alt="" title="" /></a>-->
-            <h3 style="color: white;font-family:'Arial Narrow'">HARAKA <span style="color : yellow">.</span></h3>
+            <a href="index.html"><img style="height: 70px; width: 110px; max-width: 100%;"  src="img/haraka.png" alt="" title="" /></a>
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li><a href="#">Ajouter Chauffeur</a></li>
+                    <li><a href="/ajouterChauffeur">Ajouter Chauffeur</a></li>
                     <li><a href="#">Générer Rapport</a></li>
                     <li><a href="#">Se déconnecter</a></li>
                 </ul>
@@ -145,8 +144,7 @@
     </div>
 </header>
 
-<section style="margin: 70px auto; width: 90%; max-width: 1200px;">
-
+<section style="margin: 80px auto; width: 90%; max-width: 1200px;">
     <div class="section-top-border">
         <h3 class="mb-30" style="font-family: 'Rockwell Condensed'; font-size: 30px">ADMINISTRATION DES CHAUFFEURS</h3>
         <a href="/ajouterChauffeur" class="btn btn-primary mb-4">Ajouter un Chauffeur</a>
@@ -161,53 +159,56 @@
                     <th scope="col">Immatriculation</th>
                     <th scope="col">Couleur</th>
                     <th scope="col">Catégorie</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col" style="text-align: center; left: 10px">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                @php $i=0 ; @endphp
+                @php $i = 0; @endphp
                 @foreach($chauffeurs as $chauffeur)
-                    @php $i ++ ; @endphp
+                    @php $i++; @endphp
                     <tr>
                         <td data-label="N°">{{ $i }}</td>
-                        <td data-label="Numéro de téléphone">{{$chauffeur->telephone}} </td>
-
-                        <td data-label="Numéro de téléphone">{{$chauffeur->mot_de_passe}} </td>
+                        <td data-label="Numéro de téléphone">{{ $chauffeur->telephone }}</td>
+                        <td data-label="Mot de passe">{{ $chauffeur->mot_de_passe }}</td>
 
                         @foreach($chauffeur->vehicules as $vehicule)
-
-                            <td data-label="Marque du véhicule">{{$vehicule->marque}}</td>
-                            <td data-label="Immatriculation">{{$vehicule->plaqueImmat}}</td>
-                            <td data-label="Couleur">{{$vehicule->couleurVehicule}}</td>
+                            <td data-label="Marque du véhicule">{{ $vehicule->marque }}</td>
+                            <td data-label="Immatriculation">{{ $vehicule->plaqueImmat }}</td>
+                            <td data-label="Couleur">{{ $vehicule->couleurVehicule }}</td>
 
                             @if(!is_null($vehicule->categorie))
-                                <td data-label="Catégorie">{{$vehicule->categorie->nomCategorie}}</td>
+                                <td data-label="Catégorie">{{ $vehicule->categorie->nomCategorie }}</td>
                             @else
                                 <td data-label="Catégorie">Aucune catégorie</td>
                             @endif
 
-
                             <td data-label="Actions">
                                 <!-- Bouton Modifier -->
-                                <a href="/chauffeur/{{$chauffeur->id}}/edit" class="btn btn-warning btn-sm">Modifier</a>
+                                <a href="/chauffeur/{{ $chauffeur->id }}/edit" class="btn btn-warning btn-sm">Modifier</a>
+
                                 <!-- Bouton Supprimer -->
                                 <form action="{{ route('chauffeur.delete', $chauffeur->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce chauffeur ?');">Supprimer</button>
                                 </form>
+
+                                <!-- Bouton Générer PDF -->
+                                <a href="{{ route('chauffeur.rapport.pdf', $chauffeur->id) }}" class="btn btn-info btn-sm" target="_blank">
+                                    <i class="fa fa-file-pdf-o"></i> PDF
+                                </a>
                             </td>
+
 
                         @endforeach
                     </tr>
                 @endforeach
-
                 </tbody>
             </table>
         </div>
     </div>
-
 </section>
+
 
 <footer class="footer-area">
     <div class="container text-center">

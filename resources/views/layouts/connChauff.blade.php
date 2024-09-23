@@ -57,7 +57,8 @@
                             <label for="mot_de_passe" class="form-label">Mot de passe :</label>
                             <input id="mot_de_passe" type="password" class="form-control @error('mot_de_passe') is-invalid @enderror" name="mot_de_passe" autocomplete="current-password">
 
-                            @error('mot_de_passe')
+
+                            @error('fail')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

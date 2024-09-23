@@ -49,3 +49,5 @@ Route::get('/order/success', function () {
     return view('order.success');
 })->name('order.success');
 
+Route::get('/chauffeur/{id}/rapport/pdf', [\App\Http\Controllers\ChauffeurController::class, 'generatePdf'])->name('chauffeur.rapport.pdf');
+Route::get('/chauffeur/{id}/rapport/excel', [\App\Http\Controllers\ChauffeurController::class, 'generateExcel'])->name('chauffeur.rapport.excel');

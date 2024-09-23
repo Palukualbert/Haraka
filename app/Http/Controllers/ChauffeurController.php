@@ -8,6 +8,13 @@ use App\Models\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+// Import du package DOMPDF
+use PDF;
+// Import du package Laravel Excel
+use Excel;
+
+use App\Exports\ChauffeurExport;
+
 
 class ChauffeurController extends Controller
 {
@@ -17,7 +24,7 @@ class ChauffeurController extends Controller
 
         $chauffeurs = Chauffeur::all();
         $categories = Categorie::all();
-        return view('layouts.Liste_chauffeurs',compact('chauffeurs', 'categories'));
+        return view('layouts.Liste_chauffeurs', compact('chauffeurs', 'categories'));
     }
 
     public function ajouterChauffeur()
@@ -25,6 +32,7 @@ class ChauffeurController extends Controller
         $chauffeur = new Chauffeur(); // Objet vide pour la création
         return view('layouts.AjouterChauffeur', ['mode' => 'create', 'chauffeur' => $chauffeur]);
     }
+
     public function edit($id)
     {
         $chauffeur = Chauffeur::with('vehicules')->findOrFail($id);
@@ -60,22 +68,25 @@ class ChauffeurController extends Controller
         return to_route('chauffeur.liste')->with('success', 'Chauffeur modifié avec succès');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $chauffeur = Chauffeur::findOrFail($id); // Récupérer le chauffeur par ID
         $chauffeur->delete(); // Supprimer le chauffeur
 
         return to_route('chauffeur.liste')->with('success', 'Chauffeur supprimé avec succès');
     }
-    public function enregistrer_chauffeur(Request $request){
+
+    public function enregistrer_chauffeur(Request $request)
+    {
         $motDePasse = $this->genererMotDePasse();
 
         $chauffeur = Chauffeur::create([
             'nom' => $request->nom,
             'adresse' => $request->adresse,
             'telephone' => $request->telephone,
-            'disponible'=> 0,
+            'disponible' => 0,
             'password' => Hash::make($motDePasse),
-            'mot_de_passe'=>$motDePasse
+            'mot_de_passe' => $motDePasse
         ]);
         Vehicule::create([
             'marque' => $request->marque,
@@ -87,11 +98,42 @@ class ChauffeurController extends Controller
         return to_route('chauffeur.liste');
 
     }
+
     function genererMotDePasse()
     {
         return Str::random(6);
     }
-    function accepter(){
+
+    public function accepter()
+    {
+
         return view('layouts.Acceptation');
     }
+
+    // Méthode pour générer un rapport PDF
+    public function generatePdf($id)
+    {
+        // Récupérer le chauffeur avec ses véhicules
+        $chauffeur = Chauffeur::with('vehicules')->findOrFail($id);
+
+        // Générer le PDF en passant les données du chauffeur
+        $pdf = PDF::loadView('rapports.chauffeur_pdf', compact('chauffeur'));
+
+        // Télécharger le fichier PDF
+        return $pdf->stream('rapport_chauffeur_' . $chauffeur->nom . '.pdf');
+
+        //$pdf->download "à utiliser si on souhaite télécharger sans ouvrir le fichier automatiquement dans un autre onglet"
+        //return $pdf->download('rapport_chauffeur_' . $chauffeur->nom . '.pdf');
+
+    }
+
+    // Méthode pour générer un rapport Excel
+   /* public function generateExcel($id)
+    {
+        // Récupérer le chauffeur par ID
+        $chauffeur = Chauffeur::findOrFail($id);
+
+        // Générer le fichier Excel
+        return Excel::download(new ChauffeurExport($chauffeur), 'rapport_chauffeur_' . $chauffeur->nom . '.xlsx');
+    }*/
 }

@@ -4,7 +4,7 @@
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="">
+    <link rel="shortcut icon" href="img/haraka.png">
     <!-- Author Meta -->
     <meta name="author" content="colorlib">
     <!-- Meta Description -->
